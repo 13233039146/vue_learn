@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <input v-model="msg" type="text" >
+    <hr>
+    <span>{{ msg }}</span>
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            msg:""
+        },
+    })
+</script>
+</body>
+</html>

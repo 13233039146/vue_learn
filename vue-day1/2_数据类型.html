@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="test_vue">
+    <h1>{{ message }}</h1>
+    <h2>{{ number % 8 }}</h2>
+    <h2>姓名: {{ user.username }} ,密码: {{ user.password }} ,年龄: {{ user.age}}</h2>
+    <h2>{{ arr[0] }}</h2>
+    <h2>{{ users_arr[0].username }} {{ users_arr[1].username}}</h2>
+
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            // 字符串类型
+            message:'恭喜发财',
+            // 数字类型
+            number:20,
+            // 对象类型
+            user:{
+                username:'whj',password:'070354',age:18
+            },
+            //数组
+            arr:['阳泉','长治','大同','忻州'],
+            // 对象数组
+            users_arr:[
+                {username:'whj',pwd:'070354',age:22},
+                {username:'zxq',pwd:'123456',age:20},
+            ]
+        },
+    })
+</script>
+</body>
+</html>

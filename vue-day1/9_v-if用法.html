@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <h3 v-if="id>11">{{ info }}</h3>
+    <h3 v-else>{{ message }}</h3>
+
+    <input type="button" @click="change_id" value="click">
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            id:10,
+            message:'天津市武清区创业基地',
+            info:'不显示了',
+        },
+        methods: {
+            change_id(){
+                this.id ++;
+            }
+        },
+    })
+</script>
+</body>
+</html>

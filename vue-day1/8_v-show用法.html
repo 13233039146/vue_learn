@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+
+    <span v-show="sure_show">{{ msg }}</span>
+    <hr>
+    <span v-show="id>=100">{{ msg}}</span>
+    <hr>
+    <span v-show="true">我最帅</span>
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            msg:'goodgoodstudy daydayup',
+            sure_show:true,
+            id:99
+        },
+        methods: {},
+    })
+</script>
+</body>
+</html>

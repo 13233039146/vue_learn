@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+
+    <ul>
+        <li v-for="city in cities">{{city}}</li>
+    </ul>
+
+    <ul>  <!--值:键:下标-->
+        <li v-for="value in users">
+            <span v-for="(v,k,i) in value">[{{ i }}]{{k}} : {{ v }} &nbsp;&nbsp;</span>
+        </li>
+    </ul>
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            users:[
+                {name:'whj',age:18,salary:18000},
+                {name:'lwt',age:17,salary:5000},
+            ],
+            cities:['北京','上海','广州','深圳'],
+        },
+        methods: {},
+    })
+</script>
+</body>
+</html>

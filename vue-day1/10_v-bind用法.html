@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .style_img {
+            border: 2px deeppink solid;
+        }
+    </style>
+</head>
+<body>
+
+<div id="test_vue">
+
+<!--<img class="style_img" title="二哈"-->
+<!--       src="https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3469716026,2816395410&fm=26&gp=0.jpg">-->
+
+<!--    <img v-bind:src="src" v-bind:title="title" v-bind:class="{style_img: showCss}">-->
+
+    <img :src="src" alt="图片未加载出来.." :title="title" :class="{style_img: show}">
+
+    <input type="button" value="点我" @click="addCss">
+    <input type="button" value="别点他,点我" @click="changeImg">
+
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: "#test_vue",
+        data: {
+            title: "帅气的二哈",
+            show: true,
+            src: "https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3469716026,2816395410&fm=26&gp=0.jpg"
+        },
+        methods: {
+            addCss() {
+                this.show = !this.show;
+            },
+            changeImg() {
+                this.src = "https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2481540226,557581684&fm=115&gp=0.jpg"
+            },
+        },
+    })
+</script>
+
+</body>
+</html>

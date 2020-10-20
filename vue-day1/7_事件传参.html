@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <span>{{name}}</span>
+    <input type="button" @click="set_name('张飞')" value="点我换名">
+    <input type="button" @click="set_age()" value="传递事件">
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            name:'whj',
+            age:20,
+        },
+        methods: {
+            set_name(name){
+                this.name=name
+            },
+            set_age(){
+                console.log(event)
+            }
+        },
+    })
+</script>
+</body>
+</html>

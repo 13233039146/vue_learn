@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+
+    <span> {{ age }} </span>
+    <br>
+    <input type="button" @click="change_age"
+           value="简化后的事件:点我">
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            age:18,
+        },
+        methods: {
+            // 不用再写function
+            change_age(){
+                this.age += 1;
+            }
+        },
+    })
+</script>
+</body>
+</html>

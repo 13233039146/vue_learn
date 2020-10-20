@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <!-- 支持大小写转换 -->
+    <h3>{{ msg.toLowerCase() }}</h3>
+    <h3>{{ message.toUpperCase() }}</h3>
+
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            msg:'HAHAHAHAa',
+            message:'lallaa',
+        }
+    })
+</script>
+</body>
+</html>

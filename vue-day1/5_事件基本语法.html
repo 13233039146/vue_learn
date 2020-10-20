@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    你的年龄: <span> {{ age }}</span><br>
+    <input type="button" v-on:click="modify_age" value="点我让你返老还童">
+
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            age:44,
+        },
+        methods: {
+            modify_age:function (){
+                // this指向当前实例化的vue实例
+                this.age -= 5 ;
+            }
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <p> {{ message }},我谁都不服 </p>
+
+    <!--使用v-text会覆盖标签中的内容,但是会避免插值闪烁的情况-->
+    <p v-text="message"> 牛逼啊兄弟</p>
+
+    <hr>
+
+    <a href="">我是一个普通的超链接</a>
+    <span>  直接写插值语法不可以 </span>
+    <p>{{ super_a }}</p>
+    <!--  v-html可以将超链接在标签中转换  -->
+    <p v-html="super_a"></p>
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            message : '我是天下第一帅',
+            super_a:'<a href="">我是一个带了v-html的超链接</a>'
+        },
+
+    })
+</script>
+</body>
+</html>

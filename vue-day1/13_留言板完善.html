@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="test_vue">
+    <input type="text" v-model="msg">
+    <input type="button" value="给ta留言" @click="commit_message">
+    <hr>
+    <ul>
+        <li style="list-style-type: decimal;font-size: 25px;"
+            v-for="(value,index) in message_board" :key="index">  {{ value }}
+            <a href="javascript:" @click="delete_message(index)">删除</a>
+        </li>
+    </ul>
+    <hr>
+    <span style="font-size: 25px;">&ensp;留言总数:{{ message_board.length }}</span>
+    <input v-show="message_board.length>0" type="button" value="全部删除" @click="del_all">
+<!--    <input type="text">-->
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            message_board:['first blood','it is an awful day'],
+            msg:'',
+        },
+        methods: {
+            commit_message(){
+                if(this.msg){
+                    this.message_board.unshift(this.msg); // 加入数组的头部
+                    this.msg = '';
+                }
+
+            },
+
+            delete_message(index){
+                this.message_board.splice(index, 1)  // 从对应下标开始,删除1个,
+            },
+
+            del_all(){
+                this.message_board = []
+            }
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    用户名: <span>{{ username }}</span>
+    密码: <span>{{ password }}</span>
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el:'#test_vue',
+        data:{
+            username:'whj',
+            password:'070354',
+        }
+    })
+</script>
+</body>
+</html>
