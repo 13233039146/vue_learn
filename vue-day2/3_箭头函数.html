@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    // 正常函数
+    function add(a,b){
+        return a+b;
+    }
+    d = add(10,11)
+    console.log(d);
+
+    // 匿名函数
+    let add2 = function (a,b){
+        return a+b;
+    }
+    res = add2(5,8);
+    console.log(res);
+
+    // 箭头函数
+    // 是特殊的匿名函数,是对匿名函数写法的简化
+    let add3 = (a,b) => a+b;// 名字 = (参数列表) => {}
+    // 只有一条语句 省略{} , 只有return省略 "return"
+
+    let func = a => {
+        console.log(1);
+        console.log(2);   // 只有一个参数 省略()
+    }
+
+    let fun2 = () => console.log(1111111);
+    // 没有参数的箭头函数不能省略 "()"
+    res2 = add3(1,2);
+    console.log(res2);
+
+
+    new Vue({
+        el: '#test_vue',
+        data: {},
+        methods: {},
+    })
+</script>
+</body>
+</html>

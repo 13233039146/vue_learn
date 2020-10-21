@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+
+    let func = {
+        username : '王豪杰',
+        print_u: function (){
+            console.log('名字:' + this.username);
+        }
+    }
+    func.print_u()
+
+    let func2 = {
+        username2 : '王豪杰2',
+        print_u2: function (){
+            setTimeout(function (){
+                console.log(this.username2);
+            })
+        }
+    }  // 此时的this已经不指向func2
+    func2.print_u2()  // undifined
+
+    // 使用箭头函数解决
+    let func3 = {
+        username3 : '王豪杰3',
+        print_u3: function (){
+            setTimeout(() => {  // 没有参数 不能省略箭头函数的 ()
+                console.log(this.username3)
+            })
+        }
+    }
+    func3.print_u3()
+
+
+
+
+    new Vue({
+        el: '#test_vue',
+        data: {},
+        methods: {},
+    })
+</script>
+</body>
+</html>

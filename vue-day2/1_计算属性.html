@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--一个变量的改变依赖于多个变量-->
+<div id="test_vue">
+    十位:<input type="number" v-model="shiwei" max="9" min="1"> <br>
+    个位:<input type="number" v-model="gewei" max="9" min="0"> <br>
+    <p>结果: {{res}}</p>
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            shiwei:"",
+            gewei:"",
+        },
+        // computed 声明一个方法属性
+        computed:{
+            // res是一个方法属性 名字要与模板中使用的变量名一致
+            res(){
+                // 计算的是data中没有的数据
+                // 字符前面加一个 "+"  相当于转成int去计算
+                return this.shiwei * 10 + +this.gewei;
+            }
+        }
+    })
+</script>
+</body>
+</html>

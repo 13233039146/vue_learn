@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <span>我是父组件</span>
+    <span>父组件数据: {{ username }} </span>
+    <!-- @后面的名字要与子组件$emit传的事件名一致   -->
+    <comp @commit="clickMe"></comp>
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    let comp = {
+        template : `
+        <div>
+        <span>我是子组件</span>
+        <input type="button" @click="commit_data" value="点我传值">
+</div>
+        `,
+        methods : {
+            commit_data(){
+                // 使用该方法向父组件传递值, 参数列表 ('事件名',传递的data)
+                this.$emit('commit','张信哲');
+            }
+        },
+
+    }
+    new Vue({
+        el: '#test_vue',
+        data: {
+            username: '王豪杰',
+        },
+        methods:{
+            // 通过事件来传递参数
+            clickMe(username) {
+                this.username = username;
+            }
+        },
+        components:{
+            comp:comp,
+        }
+    })
+</script>
+</body>
+</html>

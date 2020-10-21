@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--全局组件一般不使用-->
+<body>
+<div id="test_vue">
+    <comp></comp>
+</div>
+<!--只能用于Vue范围内-->
+<!--<comp></comp>-->
+<script src="../vue.min.js"></script>
+<script>
+    let comp = {
+        template: `
+            <div>这是一个组件
+            <hr>
+            <span>{{username}}</span>
+            <hr>
+            <span @click="change">{{password}}</span>
+            </div>
+        `,
+        data:function () {
+            return {
+                username : '王豪杰',
+                password: '123456',
+            }
+        },
+        methods:{
+          change(){
+              this.password = '111111111';
+          }
+        },
+
+    }
+    // 定义全局组件  参数列表:('在模板中要用的组件名(自定义)',定义好的组件名)
+    Vue.component('comp',comp)
+
+    new Vue({
+        el: '#test_vue',
+        data: {},
+        methods: {},
+    })
+</script>
+</body>
+</html>

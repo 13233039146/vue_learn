@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--多个值的变化依赖于一个值的改变-->
+<body>
+<div id="test_vue">
+    数字: <input type="text" v-model="number"> <br>
+    <p>十位:{{shiwei}}</p>
+    <p>个位:{{gewei}}</p>
+
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test_vue',
+        data: {
+            number: "",
+            shiwei: '',
+            gewei: '',
+        },
+        // 监听的值发生改变才会触发监听事件
+        watch: {
+            // 监听的是data中已存在的数据(number)
+            // 做的是修改值的操作 没有返回值
+            number() {
+                this.shiwei = parseInt(this.number / 10);
+                this.gewei = this.number % 10;
+            }
+        }
+    })
+</script>
+</body>
+</html>

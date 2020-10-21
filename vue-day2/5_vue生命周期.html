@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <span id='span'>{{text}}</span>
+    <p id='p' @click="click">{{num}}</p>
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+
+    new Vue({
+        el: '#test_vue',
+        data: {
+            num : 80,
+            text: '内容',
+        },
+        methods: {
+            click(){
+                this.num --;
+            }
+        },
+        // vue生命周期的第一个钩子 只用于生命周期初始化和自身事件的绑定
+        beforeCreate: function (){
+            // beforeCreate: undefined---undefined
+            console.log("beforeCreate: " + this.num + '---' + this.text);
+        },
+        // 第二个钩子,创建完毕,并且初始化了el,data,methods等属性和方法
+        created: function (){
+            // created:80---内容
+            console.log('created:' + this.num + '---' + this.text);
+        },
+        // 该函数在执行时vue将el作为执行范围来进行模板编译(还没有进行渲染页面)
+        beforeMount:function () {
+            // beforeMount:{{text}}{{num}}
+            console.log('beforeMount:' + document.getElementById('span').innerText
+            + document.getElementById('p').innerText)
+        },
+        // 执行该函数时已经将数据渲染到了页面并完成数据更新
+        mounted: function () {
+            // mounted:内容80
+            console.log('mounted:' + document.getElementById('span').innerText+
+                document.getElementById('p').innerText)
+        },
+        // 数据修改时执行该函数,但是仅仅是修改了vue实例中的数据,页面还没有渲染
+        beforeUpdate: function (){
+            // beforeUpdate:79
+            // beforeUpdate: 80
+            console.log('beforeUpdate:' + this.num);
+            console.log("beforeUpdate: " + document.getElementById("p").innerText);
+        },
+        // 数据修改时执行,vue实例和页面渲染的结果都达到了
+        updated: function () {
+            // beforeUpdate:79
+            // beforeUpdate: 79
+            console.log('beforeUpdate:' + this.num);
+            console.log("beforeUpdate: " + document.getElementById("p").innerText);
+        },
+        // 该函数在执行时  vue实例中的data和methods还没有被销毁
+        beforeDestroy(){
+
+        },
+        // 此函数执行时  vue实例已经被销毁了
+        destroyed(){
+
+        },
+    })
+
+
+
+</script>
+</body>
+</html>

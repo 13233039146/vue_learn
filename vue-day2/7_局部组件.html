@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <span>vue里的salary : {{salary}}</span>
+    <comp></comp>
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    let comp = {
+        template :`
+        <div>
+        <hr>
+            <span>局部组件</span>
+            <br>
+            <span>局部组件的salary:{{salary}}</span>
+        <hr>
+</div>
+        `,
+        data : function () {
+            return {
+                salary:9999,
+            }
+        }
+    }
+    new Vue({
+        el: '#test_vue',
+        data: {
+            salary:19778,
+        },
+        components:{
+            comp:comp,
+        }
+    })
+</script>
+</body>
+</html>

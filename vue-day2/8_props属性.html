@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .css1{
+            color:red;
+        }
+        .css2{
+            color:blue;
+        }
+        #css3{
+            color:green;
+        }
+    </style>
+</head>
+<body>
+<div id="test_vue">
+    <comp color="css1"></comp>
+    <comp color="css2"></comp>
+    <comp color="css3"></comp>
+</div>
+
+<script src="../vue.min.js"></script>
+<script>
+    let comp = {
+        template:`
+            <div>
+            <span :class="color">局部组件1</span>
+            <span :id="color">局部组件2</span>
+            <hr>
+</div>
+        `,
+        // 接收的参数都在此数组中
+        props:['color']
+    }
+    new Vue({
+        el: '#test_vue',
+        data: {},
+        methods: {},
+        components:{
+            comp:comp,
+        }
+    })
+</script>
+</body>
+</html>

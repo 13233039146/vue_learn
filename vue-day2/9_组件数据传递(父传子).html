@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <span>我是父组件(Vue)</span>
+    <br>
+    <b>父组件数据:{{parent_data}}</b>
+    <hr>
+    <!--  传递数据:添加一个 :任意变量名="父组件变量名" 的属性  -->
+    <comp :child="parent_data"></comp>
+</div>
+
+
+<script src="../vue.min.js"></script>
+
+<script>
+    let comp = {
+        template : `
+        <div>
+        <span>我是子组件</span><br>
+        父组件传递过来的数据:{{ child }}
+</div> `,
+        // 使用props接收父组件传来的数据 名字为
+        props:['child'],
+    }
+    new Vue({
+        el: '#test_vue',
+        data: {
+            parent_data : 'parent_data',
+        },
+        methods: {},
+        components:{
+            comp:comp,
+        }
+    })
+</script>
+</body>
+</html>
