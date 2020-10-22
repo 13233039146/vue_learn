@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <h1>这是vue实例</h1>
+
+    <!--  指定路由对应组件出现的位置  -->
+    <router-view></router-view>
+</div>
+
+<script src="../vue.min.js"></script>
+<script src="../vue-router.3.0.1.js"></script>
+<script>
+    let comp1 = {
+        template: `
+        <div>
+            <span>测试拼接参数组件1</span>
+            <router-link to="/comp2?id=15">点我-查看组件2</router-link>
+            <hr>
+            <span>测试动态路由参数组件1</span>
+            <router-link to="/comp2/1">点我-查看组件2</router-link>
+            <hr>
+            <span>测试js跳转传参组件1</span>
+            <input type="button" @click="jumpComp2" value="点我-查看组件2">
+        </div>
+        `,
+        methods:{
+            jumpComp2(){
+                // this.$router.push('/comp2?id=10')
+                this.$router.push('/comp2/15')
+            }
+        }
+    }
+    let comp2 = {
+        /*
+        * 拼接参数: 使用 $route.query.参数名  传参时使用参数拼接的形式
+        * 动态路由参数: 使用 $route.params.参数名 传参时使用 /参数值 的形式
+        * js跳转参数: 使用以上两种都可以接收参数
+        *           传参方式: 使用 @click等事件的方式,在事件中使用 this.$router.push()
+        *           (1) 若是$route.query.参数名 则传递时 使用拼接传参
+        *           (2) 若是$route.params.参数名 则传递时 使用 /参数值 传参
+        * $router和 $route区别:
+        *   1.$router是控制整个路由系统的对象,切换路径操作由此对象完成
+        *   2.$route则是当前路由的信息对象,获取参数与路径
+        */
+        template : `
+        <div>
+        <span>拼接参数</span>
+        <span>组件2接收到的组件1的值：{{ $route.query.id}}</span>
+        <hr>
+        <span>动态路由参数</span>
+        <span>组件2接收到的组件1的值: {{ $route.params.id }}</span>
+        <hr>
+        <span>js跳转传参</span>
+        <br>
+        <span>组件2接收到的组件1的值: {{ $route.query.id }}</span>
+        <br>
+        <span>组件2接收到的组件1的值: {{ $route.params.id }}</span>
+</div>
+        `
+    }
+    let myRouter = new VueRouter({
+        routes:[
+            {path:'/comp1',component: comp1},
+            {path:'/comp2',component: comp2},
+            {path:'/comp2/:id',component: comp2},
+            {path:'/',redirect:'/comp1'},
+        ]
+    })
+
+    new Vue({
+        el: '#test_vue',
+        data: {},
+        methods: {},
+        router : myRouter,
+    })
+</script>
+</body>
+</html>

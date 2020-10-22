@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <h1>主页</h1>
+    <hr>
+    <router-link to="/comp1">组件1</router-link>
+    <router-link to="/comp2">组件2</router-link>
+    <router-view></router-view>
+</div>
+
+<script src="../vue.min.js"></script>
+<script src="../vue-router.3.0.1.js"></script>
+<script>
+    let comp1 = {
+        template: `
+        <div>
+        <div>组件1</div>
+</div>
+        `
+    }
+    let comp2 = {
+        template: `
+        <div>
+        <div>组件2</div>
+</div>
+        `
+    }
+    let myRouter = new VueRouter({
+        routes: [
+            {path: '/comp1', component: comp1},
+            {path: '/comp2', component: comp2}
+        ]
+
+    })
+    new Vue({
+        el: '#test_vue',
+        data: {},
+        methods: {},
+        router01: myRouter,
+    })
+</script>
+</body>
+</html>

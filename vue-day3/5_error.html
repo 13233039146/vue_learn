@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+
+    <router-view></router-view>
+
+</div>
+
+<script src="../vue.min.js"></script>
+<script src="../vue-router.3.0.1.js"></script>
+
+<script>
+    let com = {
+        template: `
+          <div>
+          <hr>
+          这是一个子组件
+          <hr>
+          <router-link to="/com2/1">点我-查看组件2</router-link>
+          </div>
+        `,
+    }
+    let com2 = {
+        // 没有注意到这里有两个span标签同级
+        template: `
+        <span>这是子组件2</span>
+        <br>
+        <span>组件2接收到的组件1的值: {{ $route.params.id }}</span>
+        `
+    }
+
+    let myRouter = new VueRouter({
+        routes: [
+            {path: '/com', component: com},
+            {path: '/com2', component: com2},
+            {path: '/com2/:id', component: com2},
+            {path: '/', redirect: '/com'},
+        ]
+    })
+
+    new Vue({
+        el: '#test_vue',
+        data: {},
+        router: myRouter,
+    })
+</script>
+</body>
+</html>

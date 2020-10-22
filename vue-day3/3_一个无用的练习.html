@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--这个例子有问题-->
+<div id="test_vue">
+
+    <h1>vue实例</h1>
+    <router-link to="/comp1">路由配置的组件1</router-link>
+    <router-link to="/comp2">路由配置的组件2</router-link>
+    <!--指定路由显示位置-->
+    <router-view></router-view>
+    <hr>
+    <comp1 @datas="data_mess"></comp1>
+    <comp2 @datas="data_mess"></comp2>
+
+    <br>
+    父组件中的数据: <span v-text="datas"></span>
+</div>
+
+<script src="../vue.min.js"></script>
+<script src="../vue-router.3.0.1.js"></script>
+
+<script>
+    let index = {
+        template: `
+        <div>我是主页</div>
+        `
+    }
+    // 组件1
+    let comp1 = {
+        template : `
+        <div>
+            <hr>
+            <span>我是组件1</span>
+            <br>
+            <span @click="commit_to_parent">点我传递给父组件</span>
+
+            <hr>
+</div>
+        `,
+        methods:{
+            commit_to_parent(){
+                this.$emit('datas','我是组件1的数据')
+            }
+        }
+    }
+    let comp2 = {
+        template : `
+        <div>
+            <hr>
+            <span>我是组件2</span>
+            <br>
+            <span @click="commit_to_parent">点我传递给父组件</span>
+
+            <hr>
+</div>
+        `,
+        methods:{
+            commit_to_parent() {
+                this.$emit('datas','我是组件2的数据')
+            }
+        }
+    }
+    // 定义路由
+    let rout = new VueRouter({
+       routes:[
+           {path:'/comp1',component: comp1},
+           {path:'/comp2',component: comp2},
+           {path: '/', component: index},
+       ]
+    })
+
+    new Vue({
+        el: '#test_vue',
+        data: {
+            datas:''
+        },
+        methods: {
+            data_mess(datas){
+                this.datas = datas
+            }
+        },
+        components:{
+            comp1:comp1,
+            comp2:comp2,
+        },
+        //注册路由
+        router:rout,
+    })
+
+
+</script>
+</body>
+</html>

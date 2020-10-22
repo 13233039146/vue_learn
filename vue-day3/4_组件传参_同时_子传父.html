@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test_vue">
+    <!--  com和router-link同时存在会有两个同一组件一起显示  -->
+        <com @commit_data="receive_data"></com>
+    <hr>
+    <span>Vue中的数据 : {{ s }}</span>
+    <hr>
+
+    <router-view></router-view>
+</div>
+
+<script src="../vue.min.js"></script>
+<script src="../vue-router.3.0.1.js"></script>
+
+<script>
+    let com = {
+        template: `
+          <div>
+          <hr>
+          这是一个子组件
+          <br>
+                  <span @click="commit">点我传递参数给父组件</span>
+          <hr>
+          <router-link to="/com2/10">点我-查看组件2</router-link>
+          </div>
+        `,
+        methods: {
+            commit() {
+                this.$emit('commit_data', '|子传父_data|')
+            }
+        }
+    }
+    let com2 = {
+        template: `
+        <div>
+        <span>这是子组件2</span>
+        <br>
+        <span>组件2接收到的组件1的值: {{ $route.params.id }}</span>
+        <br>
+        <input type="button" value="返回上一页" @click="goBack" />
+        </div>
+
+        `,
+        methods:{
+            goBack(){
+                this.$router.go(-1);
+            }
+        }
+    }
+
+    let myRouter = new VueRouter({
+        routes: [
+            {path: '/com', component: com},
+            {path: '/com2', component: com2},
+            {path:'/com2/:id',component: com2},
+            {path: '/', redirect: '/com'},
+        ]
+    })
+
+    new Vue({
+        el: '#test_vue',
+        data: {
+            s: '原数据',
+        },
+        methods: {
+            receive_data(s) {
+                this.s = s
+            }
+        },
+        components:{
+            com:com,
+        },
+        router: myRouter,
+    })
+</script>
+</body>
+</html>
